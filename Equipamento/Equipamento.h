@@ -34,14 +34,13 @@ Equipamento *Equipamento::ultimo = 0;    //Inicia a variável estática em zero
 //  @param byte pin - pino da saída digital na qual o equipamento está ligado
 //  @param bool state - estado inicial da saída, HIGH ou LOW (true ou false, 1 ou 0)
 //
-//  No primeiro objeto criado, a sua variável "anterior" será 0, e a variável "ultimo"
-//      será um ponteiro para o próprio objeto. No segundo objeto criado, a sua variável
-//      anterior, será um ponteiro para o objeto que foi criado antes dele (no caso o primeiro),
-//      e a variável "ultimo", static, portanto compartilhada por todos objetos, será um
-//      ponteiro para o objeto atual. Dessa forma podemos "rastrear" todos objetos criados,
+//  No primeiro objeto criado, a sua variável "anterior" será 0, enquanto a variável "ultimo", por
+//      ser static, é única para todos objetos e será sempre um ponteiro para o último objeto criado.
+//      No segundo objeto criado, a sua variável anterior, será um ponteiro para o objeto que foi
+//      criado antes dele (no caso o primeiro). Dessa forma podemos "rastrear" todos objetos criados,
 //      pois a variável "ultimo" aponta sempre para o último objeto, e dentro dele há um ponteiro
 //      para o objeto anterior, e assim sucessivamente, até o primeiro objeto onde o ponteiro
-//      da variável "anterior é igual a zero. Com isso é possível chamar o mesmo método para todos
+//      da variável "anterior" é igual a zero. Com isso é possível chamar o mesmo método para todos
 //      objetos criados, partindo do último até chegar ao primeiro -- isso será usado nas funções
 //      setupAll() e demais xxxxxAll().
 Equipamento::Equipamento(byte pin, bool state)
