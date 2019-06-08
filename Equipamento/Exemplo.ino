@@ -1,7 +1,5 @@
 #include "Arduino.h"
 #include "Equipamento.h"
-
-
 // =============================================================================
 //  CRIA OBJETOS PARA OS EQUIPAMENTOS LIGADOS NAS SAÍDAS DO ARDUINO
 //
