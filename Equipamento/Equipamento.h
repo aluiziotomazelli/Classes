@@ -39,7 +39,7 @@ Equipamento::Equipamento(byte pin)
     atual = this;           //Copia na variavel estática um ponteiro para o objeto que está sendo criado
 }
 
-//  Construtor padrão para iniciar saída desligada
+//  Construtor alternativo para iniciar saída ligada
 Equipamento::Equipamento(byte pin, bool high)
         : pino(pin), ligado(high) {
     anterior = atual;       //Copia para o membro "anterior" um ponteiro para o ultimo objeto criado
