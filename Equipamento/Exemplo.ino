@@ -22,7 +22,7 @@ void setup()
     //
     //  O comando abaixo dá setup em cada objeto criado, seta os pinos como saída e
     //  os inicia ligados ou desligados, conforme o parâmetro passado no construtor
-    //  dele, HIGH ou LOW
+    //  de cada objeto: HIGH ou LOW
     // =============================================================================
     Serial.println(F("Fazendo setup nos equipamentos"));
     Equipamento::setupAll();    //Faz setup em todos equipamentos
