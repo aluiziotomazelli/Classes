@@ -5,6 +5,8 @@
 //  Cria objetos para cada equipamento e permite que eles sejam
 //  ligados, desligados, etc....
 //=============================================================
+#ifndef EQUIPAMENTO_H_
+#define EQUIPAMENTO_H_
 #include <Arduino.h>
 
 
@@ -31,16 +33,8 @@ public:
 
 Equipamento *Equipamento::atual = 0;    //Inicia a variavel estatica em zero
 
-//  Construtor padrão para iniciar saída desligada
-Equipamento::Equipamento(byte pin)
-        : pino(pin) {
-    ligado = false;         //Variavel inicia indicando equipamento desligado
-    anterior = atual;       //Copia para o membro "anterior" um ponteiro para o ultimo objeto criado
-    atual = this;           //Copia na variavel estática um ponteiro para o objeto que está sendo criado
-}
-
-//  Construtor alternativo para iniciar saída ligada
-Equipamento::Equipamento(byte pin, bool high = HIGH)
+//  Construtor
+Equipamento::Equipamento(byte pin, bool high)
         : pino(pin), ligado(high) {
     anterior = atual;       //Copia para o membro "anterior" um ponteiro para o ultimo objeto criado
     atual = this;           //Copia na variavel estática um ponteiro para o objeto que está sendo criado
@@ -88,3 +82,5 @@ void Equipamento::ligaAll() {
     for (Equipamento *i = atual; i != 0; i = i->anterior)
         i->liga();
 }
+
+#endif /* EQUIPAMENTO_H_ */

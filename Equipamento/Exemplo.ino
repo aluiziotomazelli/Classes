@@ -4,18 +4,14 @@
 //  CRIA OBJETOS PARA OS EQUIPAMENTOS LIGADOS NAS SAÍDAS DO ARDUINO
 //
 //  A sintaxe de criação é:
-//  Equipamento nomeDoEquipamento(pino em que ele está ligado);
-//
-//  Por padrão a saída é inicializada desligada, se quiser inicializar ela
-//  ligada é preciso usar a sintaxe abaixo:
-//  Equipamento nomeDoEquipamento(pino, HIGH);
+//  Equipamento nomeDoEquipamento(pino em que ele está ligado, ESTADO_INICIAL);
 //
 // =============================================================================
 
-Equipamento aquecedor(10);      //aquecedor ligado no pino 10
-Equipamento fan(11);            //fan ligado no pino 11
-Equipamento solenoide(A2);      //solenoide ligada no pino 12
-Equipamento filtro(9, HIGH);    //filtro ligado no pino 13, que irá iniciar ligado
+Equipamento aquecedor(10, LOW);     //aquecedor ligado no pino 10, inicia desligado
+Equipamento fan(11, LOW);           //fan ligado no pino 11
+Equipamento solenoide(A2, LOW);     //solenoide ligada no pino 12
+Equipamento filtro(9, HIGH);        //filtro ligado no pino 13, inicia ligado
 
 void setup()
 {
@@ -25,8 +21,8 @@ void setup()
     //  SETUP NOS EQUIPAMENTOS
     //
     //  O comando abaixo dá setup em cada objeto criado, seta os pinos como saída e
-    //  os inicia desligados, OU ligados se na criação foi colocada a palavra HIGH
-    //  como no exemplo Equipamento filtro(13, HIGH);
+    //  os inicia ligados ou desligados, conforme o parâmetro passado no construtor
+    //  dele, HIGH ou LOW
     // =============================================================================
     Serial.println(F("Fazendo setup nos equipamentos"));
     Equipamento::setupAll();    //Faz setup em todos equipamentos
