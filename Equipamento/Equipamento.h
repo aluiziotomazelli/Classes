@@ -46,8 +46,8 @@ Equipamento *Equipamento::ultimo = 0;    //Inicia a variável estática em zero
 //      setupAll() e demais xxxxxAll().
 Equipamento::Equipamento(byte pin, bool state)
         : pino(pin), ligado(state) {
-    anterior = ultimo;       //Copia para a variável "anterior" o ponteiro do ultimo objeto criado
-    ultimo = this;           //Copia na variável atual (static) um ponteiro para o objeto que está sendo criado
+    anterior = ultimo;      //Copia para a variável "anterior" o ponteiro do ultimo objeto criado
+    ultimo = this;          //Copia na variável atual (static) um ponteiro para o objeto que está sendo criado
 }
 
 void Equipamento::setup() {
@@ -71,9 +71,8 @@ void Equipamento::desliga() {
 }
 
 //  @return - true se o equipamento está ligado
-bool Equipamento::isLigado()
-{
-    return ligado;              //retorna true se o equipamento estiver ligado
+bool Equipamento::isLigado() {
+    return ligado;
 }
 
 //  setupAll() - Chama a função setup() para todos objetos criados
@@ -84,8 +83,8 @@ bool Equipamento::isLigado()
 //      "anterior", que, no último objeto, aponta para o penúltimo objeto criado.
 //      Executa o laço novamente, que irá chamar setup() para o penúltimo objeto,
 //      onde, por sua vez, a variável "anterior" aponta para o antepenúltimo objeto criado.
-//      O laço é executado até que atinja o primeiro objeto criado, onde sua variável
-//      "anterior" tem valor 0, o que irá interromper o laço por não mais satisfazer
+//      Dessa forma o laço é executado até que atinja o primeiro objeto criado, onde sua
+//      variável "anterior" tem valor 0, o que irá interromper o laço por não mais satisfazer
 //      a condição de controle: i != 0
 void Equipamento::setupAll() {
     for (Equipamento *i = ultimo; i != 0; i = i->anterior)
