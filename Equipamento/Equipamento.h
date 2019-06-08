@@ -25,7 +25,7 @@ public:
 
     static void setupAll();     //Chama setup para todos objetos criados
     static void desligaAll();   //Chama desliga para todos objetos
-    static void ligaAll();   //Chama desliga para todos objetos
+    static void ligaAll();      //Chama desliga para todos objetos
 
 };
 
