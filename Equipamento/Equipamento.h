@@ -9,7 +9,7 @@
 #define EQUIPAMENTO_H_
 #include <Arduino.h>
 
-
+//  Classe para facilitar o código e torná-lo mais legível
 class Equipamento {
 private:
     byte pino;                          //pino do equipamento
@@ -19,23 +19,26 @@ private:
 
 public:
     Equipamento(byte pin);
-    Equipamento(byte pin, bool high);
-    void setup();               //Faz o setup do equipamento
-    void liga();                //Liga equipamento
-    void desliga();             //Desliga equipamento
-    bool isLigado();            //Informa se o quipamento está ligado
+    Equipamento(byte pin, bool state);
+    void setup();                       //Faz o setup do equipamento
+    void liga();                        //Liga equipamento
+    void desliga();                     //Desliga equipamento
+    bool isLigado();                    //Informa se o quipamento está ligado
 
-    static void setupAll();     //Chama setup para todos objetos criados
-    static void desligaAll();   //Chama desliga para todos objetos
-    static void ligaAll();      //Chama desliga para todos objetos
+    static void setupAll();             //Chama setup para todos objetos criados
+    static void desligaAll();           //Chama desliga para todos objetos
+    static void ligaAll();              //Chama desliga para todos objetos
 
 };
 
 Equipamento *Equipamento::atual = 0;    //Inicia a variavel estatica em zero
 
 //  Construtor
-Equipamento::Equipamento(byte pin, bool high)
-        : pino(pin), ligado(high) {
+//  @param byte pin - pino da saída digital na qual o equipamento está ligado
+//  @param bool state - estado inicial da saída, HIGH ou LOW (true ou false, 1 ou 0)
+//
+Equipamento::Equipamento(byte pin, bool state)
+        : pino(pin), ligado(state) {
     anterior = atual;       //Copia para o membro "anterior" um ponteiro para o ultimo objeto criado
     atual = this;           //Copia na variavel estática um ponteiro para o objeto que está sendo criado
 }
@@ -60,15 +63,16 @@ void Equipamento::desliga() {
     }
 }
 
+//  @return - true se o equipamento está ligado
 bool Equipamento::isLigado()
 {
     return ligado;              //retorna true se o equipamento estiver ligado
 }
 
+// Faz um loop pegando o ponteiro para o ultimo objeto criado, chama setup para ele,
+// troca para o objeto anterior e repete, até chegar no primeiro obejto criado, onde
+// a variável "i" será 0 e irá interromper o laço.
 void Equipamento::setupAll() {
-    // Faz um loop pegando o ponteiro para o ultimo objeto criado, chama setup para ele,
-    // troca para o objeto anterior e repete, até chegar no primeiro obejto criado, onde
-    // a variável "i" será 0 e irá interromper o laço.
     for (Equipamento *i = atual; i != 0; i = i->anterior)
         i->setup();
 }
