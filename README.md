@@ -6,15 +6,12 @@
   Usando a classe é possível comandar os equipamento de uma forma mais intuitiva, em vez
   de usar os comandos digitalWrite, pinMode, etc.
   
-  ##### Comandos para as instâncias individuais
-  .liga();
+  #### Comandos individuais para os objetos
+  > objeto.liga();  
+  > obejto.desliga();  
+  > objeto.isLigado();  
   
-  .desliga();
-  
-  .isLigado();
-  
-  Equipamento::setupAll();
-  
-  Equipamento::ligaAll();
-  
-  Equipamento::desligaAll();
+  #### Comandos para TODOS objetos criados
+  > Equipamento::setupAll();  
+  > Equipamento::ligaAll();  
+  > Equipamento::desligaAll();  
